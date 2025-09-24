@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import '../style.css';
 
@@ -18,7 +18,7 @@ const ApplicationForm = ({ isOpen, onClose, position }) => {
     try {
       await emailjs.send(
         'service_v26d5ek',
-        'template_c8kfjrp',
+        'template_userapp123',
         {
           position: position,
           firstName: formData.firstName,
@@ -26,8 +26,13 @@ const ApplicationForm = ({ isOpen, onClose, position }) => {
           email: formData.email,
           resumeLink: formData.resumeLink
         },
-        '2xIece6a1l3NxkU0o'
-      );
+        'VjiNxxhKhuMMSekpT'
+      )
+        .then((response) => {
+    console.log('Email sent successfully!', response.status, response.text);
+  }, (error) => {
+    console.error('Failed to send email:', error);
+  });
 
       alert('Application submitted successfully!');
       setFormData({
@@ -91,7 +96,6 @@ const ApplicationForm = ({ isOpen, onClose, position }) => {
             <p className="divider-text">OR</p>
             <input
               type="url"
-              required
               placeholder="Paste your Google Drive resume link here"
               value={formData.resumeLink}
               onChange={(e) => setFormData({...formData, resumeLink: e.target.value})}
@@ -101,16 +105,16 @@ const ApplicationForm = ({ isOpen, onClose, position }) => {
             </small>
           </div>
           <div className="form-actions">
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary-whatwedo"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Submitting...' : 'Submit Application'}
             </button>
-            <button 
-              type="button" 
-              className="btn btn-secondary" 
+            <button
+              type="button"
+              className="btn btn-secondary"
               onClick={onClose}
               disabled={isSubmitting}
             >

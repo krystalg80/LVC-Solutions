@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom"; //Added Link import for the contact us / talk with us buttons
 import "../style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { motion } from "framer-motion";
+import TransformationStartsHere from "./transformationStartsHere.js";
 import Footer from "./footer.js";
-import { useNavigate } from "react-router-dom";
 import FounderImage from "../assets/founder.jpg";
 import MicrosoftLogo from "../assets/microsoft.png";
 import OracleLogo from "../assets/oracle.png";
@@ -15,25 +15,29 @@ import SalesLogo from "../assets/salesforce.png";
 const AboutUs = () => {
   const [inView, setInView] = useState(false);
 
-  const navigate = useNavigate();
+  const myRef = useRef()
+  const chipsRef = useRef([])
+  const tabRefs = {
+    header : useRef(null),
+    pills : useRef(null),
+    image1 : useRef(null),
+    text1 : useRef(null),
+    image2 : useRef(null),
+    text2 : useRef(null),
+    image3 : useRef(null),
+    text3 : useRef(null),
+  }
 
-  const handleNavigation = (path) => {
-    navigate(path);
-    window.scrollTo(0, 0);
-  };
-
-  const myRef = useRef();
-  const chipsRef = useRef([]);
 
   // Function to generate a random color
-  const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
+  // const getRandomColor = () => {
+  //   const letters = "0123456789ABCDEF";
+  //   let color = "#";
+  //   for (let i = 0; i < 6; i++) {
+  //     color += letters[Math.floor(Math.random() * 16)];
+  //   }
+  //   return color;
+  // };
 
   // Intersection Observer to detect when the element is in view
   useEffect(() => {
@@ -56,6 +60,28 @@ const AboutUs = () => {
         observer.unobserve(myRef.current);
       }
     };
+  }, []);
+
+  // 2nd intersection observer to give "fade in & out" effect to the "Why Us" section
+  useEffect(() => {
+    const observer2 = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-out");
+          } else {
+            entry.target.classList.remove("fade-out");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    for (let tabRef in tabRefs) {
+      if (tabRefs[tabRef].current) observer2.observe(tabRefs[tabRef].current);
+    }
+
+    return () => observer2.disconnect();
   }, []);
 
   // Companies for animation
@@ -140,12 +166,12 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="tabsecction">
-        <h1>Why Us</h1>
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
+      <div className="tab-section">
+        <h1 ref={tabRefs.header} className="header-section">Why Us</h1>
+        <ul className="nav nav-pills mb-3 pills-section" id="pills-tab" role="tablist" ref={tabRefs.pills}>
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link active  nav-btn-tab"
+              className="nav-link active  nav-btn-tab"
               id="pills-home-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-home"
@@ -157,9 +183,9 @@ const AboutUs = () => {
               Our Mission
             </button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link nav-btn-tab"
+              className="nav-link nav-btn-tab"
               id="pills-profile-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-profile"
@@ -171,9 +197,9 @@ const AboutUs = () => {
               Our Vision
             </button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link nav-btn-tab"
+              className="nav-link nav-btn-tab"
               id="pills-contact-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-contact"
@@ -182,26 +208,26 @@ const AboutUs = () => {
               aria-controls="pills-contact"
               aria-selected="false"
             >
-              We are
+              Who We Are
             </button>
           </li>
         </ul>
-        <div class="tab-content" id="pills-tabContent">
+        <div className="tab-content" id="pills-tabContent">
           <div
-            class="tab-pane fade show active"
+            className="tab-pane fade show active"
             id="pills-home"
             role="tabpanel"
             aria-labelledby="pills-home-tab"
           >
             <div className="tab-content-wrapper">
-              <div className="tab-image-container">
+              <div className="tab-image-container image-section" ref={tabRefs.image1}>
                 <img
                   src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?q=80&w=1783&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Mission"
                   className="tab-image"
                 />
               </div>
-              <div className="tab-paragraph-width">
+              <div className="tab-paragraph-width text-section" ref={tabRefs.text1}>
                 <h1>Our Mission</h1>
                 <p className="tab-paragraph">
                   At LVC Solutions, our mission is to empower businesses by
@@ -219,20 +245,20 @@ const AboutUs = () => {
             </div>
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="pills-profile"
             role="tabpanel"
             aria-labelledby="pills-profile-tab"
           >
             <div className="tab-content-wrapper">
-              <div>
+              <div className="image-section" ref={tabRefs.image2}>
                 <img
                   src="https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Mission"
                   className="tab-image"
                 />
               </div>
-              <div className="tab-paragraph-width">
+              <div className="tab-paragraph-width text-section" ref={tabRefs.text2}>
                 <h1>Our Vision</h1>
                 <p className="tab-paragraph">
                   At LVC Solutions, our vision is to be a trusted partner for
@@ -251,20 +277,20 @@ const AboutUs = () => {
             </div>
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="pills-contact"
             role="tabpanel"
             aria-labelledby="pills-contact-tab"
           >
             <div className="tab-content-wrapper">
-              <div>
+              <div className="image-section" ref={tabRefs.image3}>
                 <img
                   src="https://images.unsplash.com/photo-1565665681743-6ff01c5181e3?q=80&w=1995&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Mission"
                   className="tab-image"
                 />
               </div>
-              <div className="tab-paragraph-width">
+              <div className="tab-paragraph-width text-section" ref={tabRefs.text3}>
                 <h1>Innovators at Heart</h1>
                 <p className="tab-paragraph">
                   We are a dynamic team of tech enthusiasts and innovators who
@@ -339,43 +365,8 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="footer-section">
-        <div className="footer-section-flex">
-          <div>
-            <h2>Transformation starts here</h2>
-            <br></br>
-            <p>Imagine your future</p>
-            <button
-              className="Connect-button"
-              onClick={() => {
-                handleNavigation("/contact");
-              }}
-            >
-              Connect With Us
-            </button>
-          </div>
-          <div className="divider"></div>
-          <div className="footer-section-flex-column">
-            <p>FIND OUT MORE</p>
-            <button
-              className="Connect-button-service"
-              onClick={() => {
-                handleNavigation("/services");
-              }}
-            >
-              Our Services
-            </button>
-            <button
-              className="Connect-button-contact "
-              onClick={() => {
-                handleNavigation("/contact");
-              }}
-            >
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </div>
+      <TransformationStartsHere/>
+
       <Footer />
     </div>
   );
