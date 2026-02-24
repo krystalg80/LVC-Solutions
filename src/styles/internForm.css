@@ -1,0 +1,92 @@
+body {
+  background: #0d1117;
+  font-family: Arial, sans-serif;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.form-card {
+  background: linear-gradient(145deg, #0f172a, #111827);
+  padding: 40px;
+  border-radius: 12px;
+  width: 450px;
+  color: white;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #1f2937;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #7c3aed;
+  transition: width 0.3s ease;
+}
+
+.progress.step1 {
+  width: 50%;
+}
+
+.progress.step2 {
+  width: 100%;
+}
+
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #000;
+  color: white;
+  outline: none;
+}
+input::placeholder {
+  color: #d4af37;
+  opacity: 1; 
+}
+
+input:focus {
+  border: 1px solid #7c3aed;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #7c3aed;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #6d28d9;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group button {
+  width: 100%;
+}

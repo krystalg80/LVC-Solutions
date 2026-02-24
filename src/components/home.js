@@ -1,80 +1,59 @@
-import React, { useEffect, useRef,useState } from "react";
 import CarouselComponent from "./carsouel.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style.css";
-import Industries from "../components/services.js"
+import TransformationStartsHere from "./transformationStartsHere.js";
 import Footer from "./footer.js";
-import { useNavigate } from "react-router-dom";
-import Logo from "../assets/lvc-icon.jpg";
-import SpotLogo from "../assets/lvcSpo.jpg";
-import AcaLogo from "../assets/lvcAca.jpg";
-
+import SpotLogo from "../assets/spotlight-media.png";
+import FairJobCarousel from "./fairJobCarousel.js";
+import SpotLightCarousel from "./spotlightCarousel.js";
+import AcademyCarousel from "./academyCarousel.js";
+import lvc360logo from "../assets/lvc360logo.png";
 
 const Home = () => {
-
-  const navigate = useNavigate();
-      
-  const handleNavigation = (path) => {
-          navigate(path);
-          window.scrollTo(0, 0);
-      };
-
-  const [showAllServices, setShowAllServices] = useState(false);
-  
-    const toggleServices = () => {
-      setShowAllServices((prev) => !prev); 
-    };
-  
-    const images = [
-      { src: "https://images.pexels.com/photos/34577/pexels-photo.jpg", alt: "E-commerce Development", title: "E-commerce Development" },
-      { src: "https://images.pexels.com/photos/1181474/pexels-photo-1181474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", alt: "Website Growth", title: "Website Growth" },
-      { src: "https://images.pexels.com/photos/8867247/pexels-photo-8867247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", alt: "Website Maintenance and Support", title: "Website Maintenance and Support" },
-      { src: "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", alt: "Website Design", title: "Website Design" },
-      { src: "https://images.pexels.com/photos/8247921/pexels-photo-8247921.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", alt: "Cybersecurity", title: "Cybersecurity" },
-      { src: "https://media.istockphoto.com/id/532187422/photo/cloud-uploading-from-mobile-phone-for-file-sharing-and-collaboration.jpg?b=1&s=612x612&w=0&k=20&c=yQsLHA-8AmPjbNcwanBAxMKosyt7e4D1rJPEvMvaShg=", alt: "Cloud", title: "Cloud" },
-      { src: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", alt: "Consulting", title: "Consulting" },
-      { src: "https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", alt: "Data & Analytics", title: "Data & Analytics" },
-      { src: "https://images.pexels.com/photos/16629368/pexels-photo-16629368/free-photo-of-webpage-of-chatgpt-a-prototype-ai-chatbot-is-seen-on-the-website-of-openai-on-a-smartphone-examples-capabilities-and-limitations-are-shown.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", alt: "Artificial Intelligence", title: "Artificial Intelligence" },
-
-    ];
-
-  const textRef = useRef(null);
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("fade-out");
-          } else {
-            entry.target.classList.remove("fade-out");
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    if (textRef.current) observer.observe(textRef.current);
-    if (imageRef.current) observer.observe(imageRef.current);
-
-    return () => observer.disconnect();
-  }, []);
   return (
-    <main style={{ padding: "20px",marginTop:"50px" }}>
-      <div className="carsouelheight">
-        <CarouselComponent />
-      </div>
-      <div className="section2">
-        <h1>LVC ECOSYSTEM</h1>
-        <div className="partner-logos-container">
-          <div className="partner-logos">
-          <img src={SpotLogo} alt="Partner Logo" className="partner-logo" />
-          <img src={Logo} alt="Partner Logo" className="partner-logo" />
-          <img src={AcaLogo} alt="Partner Logo" className="partner-logo" />
-       </div>
-     </div>
-      </div>
+    <>
+      <main
+        className="page-home"
+        // style={{ padding: "20px", marginTop: "50px" }}
+      >
+        <div className="carsouelheight">
+          <CarouselComponent />
+        </div>
+        {/* <section>
+          <h1 style={{ color: 'white', fontSize: 'clamp(30px, 2.5vmax, 60px)' }}>
+              LVC Fair Job Portal <br/>
+            <strong style={{ color: 'white' }}>
+              The World's First Scam-Free Job Portal
+            </strong>
+          </h1>
+        </section>
+        <FairJobCarousel /> */}
+      </main>
+
+      {/* FULL-BLEED: Smart HR Scheduler */}
+      {/* <section className="bg-white">
+        <div className="container-fluid px-0 py-5">
+          <h1 className="text-dark">Smart HR Scheduler</h1>
+          <p
+            className="text-center mt-2 mb-0 fw-bold fst-italic fs-4"
+            style={{ color: '#4f0694' }}
+          >
+            Launching soon
+          </p>
+        </div>
+      </section>
+
+      <main style={{ padding: '20px' }}>
+        <section style={{ backgroundColor: 'black' }} className="py-5">
+          <h1 style={{ color: 'white' }}>Founder's Project</h1>
+          <p
+            className="text-center mt-2 mb-0 fw-bold fst-italic fs-4"
+            style={{ color: '#4f0694' }}
+          >
+            Launching soon
+          </p>
+        </section>
+      </main> */}
 
       {/* Material Icons Section */}
       {/* <div className="logos-section">
@@ -82,151 +61,178 @@ const Home = () => {
       <img src="https://static.vecteezy.com/system/resources/previews/021/514/726/non_2x/microsoft-software-logo-brand-symbol-with-name-black-design-illustration-free-vector.jpg" alt="Microsoft Logo" className="company-logo" />
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle Logo" className="company-logo" />
       <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" className="company-logo" />
-    </div> */}
-      <div className="row services-section-home">
-      <div style={{backgroundColor:"white",}}className="container py-5">
-        <h1  style={{color:"black",}}className="whatwe-do-herotitle">Services We Offer</h1>
-        <div className="row">
-          {/* Show first 6 images */}
-          {images.slice(0, 6).map((img, index) => (
-            <div key={index} className="col-md-4 position-relative image-container">
-              <img className="w-100 custom-image" src={img.src} alt={img.alt} />
-              <div className="overlay-text">
-                <h2 >{img.title}</h2>
+      </div> */}
+
+      {/* <section style={{ backgroundColor: "white" }} className="py-5">
+        <h1 style={{ color: "black", }}>Section</h1>
+      </section> */}
+      {/* <div style={{ border: "1px solid white" }} /> */}
+
+      {/* LVC Academy info */}
+      {/* <div
+        className="bg-black"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "20px",
+        }}
+      > */}
+        {/* <section className="container py-5 section-4">
+          <div className="academy-heading-row">
+            <div
+              style={{
+                textAlign: "center",
+                display: "grid",
+              }}
+            >
+              <img
+                src={lvc360logo}
+                alt="LVC360 Logo"
+                style={{ maxWidth: "100px", height: "auto" }}
+              />
+            </div>
+            <div>
+              <h1
+                style={{
+                  color: "#d4af37",
+                  fontSize: "clamp(30px, 2.5vmax, 60px)",
+                }}
+              >
+                LVC360 career program -
+                <span
+                  style={{
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: "clamp(20px, 1.5vmax, 40px)",
+                  }}
+                >
+                  Stop guessing. Let your career be managed.
+                </span>
+              </h1>
+            </div>
+          </div>
+          <div className="academy-carousel-container bg-black">
+            <AcademyCarousel />
+          </div>
+          <div class="container my-5">
+            <div class="p-5 text-center">
+              <h2 class="fw-bold mb-4">
+                Choose Your Path: 6-Month Fast Track or 12-Month Comprehensive
+                Bootcamp.
+              </h2>
+              <a
+                href="https://www.lvcacademy.com"
+                class="btn btn-primary btn-lg"
+              >
+                View More Bootcamps
+              </a>
+            </div>
+          </div>
+        </section> */}
+      {/* </div> */}
+
+      {/* <div style={{ border: "1px solid white" }} /> */}
+      {/* Resume normal page padding/content */}
+      {/* <main className="page-home" style={{ padding: "20px" }}> */}
+        {/* Spotlight Media */}
+        {/* <section
+          style={{
+            fontSize: "14px",
+            color: "000",
+            fontWeight: "500",
+            background: "black",
+          }}
+          className="py-5"
+        >
+          <div
+            className="container section-4"
+            style={{ paddingTop: 0, paddingBottom: 0 }}
+          >
+            <div
+              className="academy-heading-row spotlight-heading-row"
+              style={{ columnGap: "clamp(6px, 1vw, 12px)" }}
+            >
+              <div style={{ textAlign: "center", display: "grid" }}>
+                <img
+                  src={SpotLogo}
+                  alt="LVC Spotlight Media Logo"
+                  style={{ maxWidth: "300px", height: "auto" }}
+                />
+              </div>
+              <div>
+                <h1
+                  className="sportlight-heading"
+                  style={{
+                    color: "white",
+                    fontSize: "clamp(30px, 2.5vmax, 60px)",
+                    margin: 0,
+                    willChange: "transform",
+                  }}
+                >
+                  LVC Spotlight Media
+                </h1>
               </div>
             </div>
-          ))}
+          </div>
 
-          {/* Show additional images only if `showAllServices` is true */}
-          {showAllServices &&
-            images.slice(6).map((img, index) => (
-              <div key={index} className="col-md-4 position-relative image-container">
-                <img className="w-100 custom-image" src={img.src} alt={img.alt} />
-                <div className="overlay-text">
-                  <h2>{img.title}</h2>
-                </div>
+          <div className="spotlight-carousel-container">
+            <SpotLightCarousel />
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <p style={{ fontSize: "25px", color: "white" }}>
+              As Seen In → Forbes | Entrepreneur | Yahoo | TechCrunch | Medium
+            </p>
+          </div>
+        </section> */}
+
+
+        {/* section 5 transform your goals */}
+        {/* <div className="section-5">
+          <h1 style={{ textAlign: "center", color: "white" }}>
+            Transform your Goals into reality
+          </h1>
+        </div> */}
+
+        {/* <div className="container py-5">
+          <div className="row">
+            <div className="col-md-4 position-relative image-container">
+              <img
+                className="w-100 custom-image"
+                src="https://images.pexels.com/photos/7947968/pexels-photo-7947968.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Reveal Goals"
+              />
+              <div className="overlay-text">
+                <h2>Identify goals</h2>
               </div>
-            ))}
-        </div>
-
-        {/* Toggle Button */}
-        <div className="text-center mt-4">
-          <button className="view-more-btn" onClick={toggleServices}>
-            {showAllServices ? "Show Less" : "View More "}
-          </button> 
-        </div>
-      </div>
-      </div>
- 
-      
-      <div className="container py-5 section-4">
-        <div className="row align-items-center">
-          <div className="col-md-6 text-section" ref={textRef}>
-            <h2 className="mb-4 section-4-heading">What We Offer</h2>
-            <h3>Design Development</h3>
-            <p>
-              Whether you're a start-up aiming to establish your digital
-              presence or a growing enterprise seeking to elevate your brand,
-              we’re here to support your journey. You’ve found a partner
-              dedicated to your success, with the expertise to deliver real
-              results.
-            </p>
-            <p>
-              Over the past 5 years, we’ve worked with countless clients,
-              helping them achieve measurable growth and lasting impact.
-            </p>
-            <p>
-              <strong>
-                Results, innovation, and growth are what we strive to bring to
-                every project.
-              </strong>
-            </p>
+            </div>
+            <div className="col-md-4 position-relative image-container">
+              <img
+                className="w-100 custom-image"
+                src="https://images.pexels.com/photos/7414305/pexels-photo-7414305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Design & Planning"
+              />
+              <div className="overlay-text">
+                <h2>Design & Planning</h2>
+              </div>
+            </div>
+            <div className="col-md-4 position-relative image-container">
+              <img
+                className="w-100 custom-image"
+                src="https://images.pexels.com/photos/4226122/pexels-photo-4226122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Execution & Reveal"
+              />
+              <div className="overlay-text">
+                <h2>Execution & Reveal</h2>
+              </div>
+            </div>
           </div>
+        </div> */}
 
-          <div className="col-md-6 image-section" ref={imageRef}>
-            <img
-              className="d-block w-100 custom-carousel-image"
-              src="https://images.pexels.com/photos/3184428/pexels-photo-3184428.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt="What We Offer"
-            />
-          </div>
-        </div>
-      </div>
-<div>
-<Industries/>
-</div>
-<div className="section-5">
-     <h1 style={{textAlign:"start",color:"white"}}>Transform your Goals in to reality </h1>
-   </div>
-<div className="container py-5">
-  <div className="row">
-    <div className="col-md-4 position-relative image-container">
-      <img
-        className="w-100 custom-image"
-        src="https://images.pexels.com/photos/7947968/pexels-photo-7947968.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-        alt="Reveal Goals"
-      />
-      <div className="overlay-text">
-        <h2>Identify goals</h2>
-      </div>
-    </div>
-    <div className="col-md-4 position-relative image-container">
-      <img
-        className="w-100 custom-image"
-        src="https://images.pexels.com/photos/7414305/pexels-photo-7414305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-        alt="Reveal Goals"
-      />
-      <div className="overlay-text">
-        <h2>Design & Planning</h2>
-      </div>
-    </div>
-    <div className="col-md-4 position-relative image-container">
-      <img
-        className="w-100 custom-image"
-        src="https://images.pexels.com/photos/4226122/pexels-photo-4226122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-        alt="Reveal Goals"
-      />
-      <div className="overlay-text">
-        <h2>Execution & Reveal</h2>
-      </div>
-    </div>
-  </div>
-</div>
-<div className="footer-section">
-        <div className="footer-section-flex">
-          <div>
-            <h2>Transformation starts here</h2>
-            <br></br>
-            <p>Imagine your future</p>
-            <button 
-            className="Connect-button"
-            onClick={() => {
-              handleNavigation("/contact");
-            }}
-            >Connect With Us</button>
-          </div>
-          <div className="divider"></div>
-          <div className="footer-section-flex-column">
-            <p>FIND OUT MORE</p>
-            <button className="Connect-button-service"
-            onClick={() => {
-              handleNavigation("/services");
-            }}
-            >Our Services</button>
-            <button className="Connect-button-contact "
-            onClick={() => {
-              handleNavigation("/contact");
-            }}
-            >Contact Us</button>
-          </div>
-        </div>
-      </div>
-      <Footer/>
-    </main>
-
-  
-
-    
+        <TransformationStartsHere />
+        <Footer />
+      {/* </main> */}
+    </>
   );
 };
 
