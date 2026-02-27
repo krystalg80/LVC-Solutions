@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, MapPin } from 'lucide-react';
 import"../style.css";
 import Footer from "./footer.js";
 const Contact = () => {
@@ -99,13 +99,14 @@ const Contact = () => {
             <div className="contact-details">
               <div className="contact-detail">
                 <MapPin className="contact-icon" />
-                <span>5015 Addison Circle, #1025,
-Addison,TX 75001, United States
-</span>
+                <span>228 Hamilton Avenue 3rd Floor,<br/>
+                      Palo Alto,CA 94301, United States
+                </span>
               </div>
               <div className="contact-detail">
-                <Phone className="contact-icon" />
-                <span>6027565614
+                <MapPin className="contact-icon" />
+                <span>5015 Addison Circle,<br/>
+                      Addison,TX 75001, United States
                 </span>
               </div>
               <div className="contact-detail">
