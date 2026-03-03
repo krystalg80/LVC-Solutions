@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ProjectModal from "./projectmodal.js";
 import "bootstrap/dist/css/bootstrap.min.css";
+import TransformationStartsHere from "./transformationStartsHere.js";
 import Footer from "./footer.js";
 import { Link } from "react-router-dom";
 import "../style.css";
-import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
 const Projects = () => {
-  const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projectsData = {
@@ -422,10 +421,6 @@ const Projects = () => {
     },
   };
 
-  const handleNavigation = (path) => {
-    navigate(path);
-    window.scrollTo(0, 0);
-  };
   return (
     <main>
       <div className="projects-section-herobanner">
@@ -1033,43 +1028,7 @@ const Projects = () => {
         </Swiper>
       </div>
 
-      <div className="footer-section">
-        <div className="footer-section-flex">
-          <div>
-            <h2>Transformation starts here</h2>
-            <br></br>
-            <p>Imagine your future</p>
-            <button
-              className="Connect-button"
-              onClick={() => {
-                handleNavigation("/contact");
-              }}
-            >
-              Connect With Us
-            </button>
-          </div>
-          <div className="divider"></div>
-          <div className="footer-section-flex-column">
-            <p>FIND OUT MORE</p>
-            <button
-              className="Connect-button-service"
-              onClick={() => {
-                handleNavigation("/services");
-              }}
-            >
-              Our Services
-            </button>
-            <button
-              className="Connect-button-contact "
-              onClick={() => {
-                handleNavigation("/contact");
-              }}
-            >
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </div>
+      <TransformationStartsHere/>
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
