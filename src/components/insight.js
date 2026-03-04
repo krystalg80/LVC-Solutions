@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 
@@ -10,19 +10,11 @@ import { Pagination, Navigation } from "swiper/modules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
+import TransformationStartsHere from "./transformationStartsHere.js";
 import Footer from "./footer.js";
-import { useNavigate } from "react-router-dom";
 
 const Insight = () => {
-  const navigate = useNavigate();
-
-  const handleNavigation = (path) => {
-    navigate(path);
-    window.scrollTo(0, 0);
-  };
-
   const [showAllServices, setShowAllServices] = useState(false);
-  const [inView, setInView] = useState(false);
   const toggleServices = () => {
     setShowAllServices((prev) => !prev);
   };
@@ -130,8 +122,8 @@ const Insight = () => {
       {/* Insight by Interest Section */}
       <div style={{ backgroundColor: "black" }} className="container py-5">
         <h1
-          style={{ color: "white", textAlign: "start" }}
-          className="whatwe-do-herotitle"
+          style={{ color: "white", textAlign: "center" }}
+          className="services-herotitle"
         >
           Insight by Interest
         </h1>
@@ -176,7 +168,7 @@ const Insight = () => {
 
       {/* Latest News Section */}
       <div className="isight-wrapper">
-        <h1>Updated with Latest news</h1>
+        <h1 style={{ textAlign: "center" }}>Updated with Latest news</h1>
         <div className="latest-news-container">
           {img.map((img) => (
             <div className="swiper-image-container position-relative">
@@ -331,43 +323,7 @@ const Insight = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="footer-section">
-        <div className="footer-section-flex">
-          <div>
-            <h2>Transformation starts here</h2>
-            <br></br>
-            <p>Imagine your future</p>
-            <button
-              className="Connect-button"
-              onClick={() => {
-                handleNavigation("/contact");
-              }}
-            >
-              Connect With Us
-            </button>
-          </div>
-          <div className="divider"></div>
-          <div className="footer-section-flex-column">
-            <p>FIND OUT MORE</p>
-            <button
-              className="Connect-button-service"
-              onClick={() => {
-                handleNavigation("/services");
-              }}
-            >
-              Our Services
-            </button>
-            <button
-              className="Connect-button-contact "
-              onClick={() => {
-                handleNavigation("/contact");
-              }}
-            >
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </div>
+      <TransformationStartsHere/>
       <Footer />
     </main>
   );

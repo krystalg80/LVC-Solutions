@@ -1,38 +1,40 @@
-import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../style.css";
-import softwareSolutions from "../assets/development.mp4";
+import landingImg from "../assets/lvc_landing.png";
+import { Margin } from "@mui/icons-material";
+// import softwareSolutions from "../assets/development.mp4";
 
 function UncontrolledExample() {
   const styles = {
     carouselContainer: {
-      height: window.innerWidth <= 768 ? '80vh' : '100vh',
-      position: 'relative',
-      overflow: 'hidden',
-      marginBottom: '-2px'
+      height: window.innerWidth <= 768 ? "80vh" : "100vh",
+      position: "relative",
+      overflow: "hidden",
+      marginBottom: "-2px",
+      marginTop: "100px",
     },
     videoWrapper: {
-      height: window.innerWidth <= 768 ? '80vh' : '100vh',
-      width: '100%',
-      position: 'relative'
+      height: window.innerWidth <= 768 ? "80vh" : "100vh",
+      width: "100%",
+      position: "relative",
     },
     video: {
-      width: '100%',
-      height: window.innerWidth <= 768 ? '80vh' : '100%',
-      objectFit: 'cover',
-      position: 'absolute',
+      width: "100%",
+      height: window.innerWidth <= 768 ? "80vh" : "100%",
+      objectFit: "cover",
+      position: "absolute",
       top: 0,
-      left: 0
+      left: 0,
     },
     caption: {
-      position: 'absolute',
-      top: '40%',
-      transform: 'translateY(-50%)',
-      left: '10%',
-      right: '10%',
-      textAlign: 'left',
-      maxWidth: window.innerWidth <= 768 ? '100%' : '800px'
-    }
+      position: "absolute",
+      top: "40%",
+      transform: "translateY(-50%)",
+      left: "10%",
+      right: "10%",
+      textAlign: "left",
+      maxWidth: window.innerWidth <= 768 ? "100%" : "800px",
+    },
   };
 
   return (
@@ -42,7 +44,7 @@ function UncontrolledExample() {
           <div style={styles.videoWrapper}>
             <video
               style={styles.video}
-              src="https://videos.pexels.com/video-files/7579657/7579657-uhd_2732_1440_25fps.mp4"
+              src="https://www.pexels.com/download/video/3141208/"
               autoPlay
               loop
               muted
@@ -62,14 +64,8 @@ function UncontrolledExample() {
 
         <Carousel.Item>
           <div style={styles.videoWrapper}>
-            <video
-              style={styles.video}
-              src="https://videos.pexels.com/video-files/29538693/12715219_1920_1080_30fps.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
+            <img src={landingImg} style={styles.video} alt="Landing" />
+            {/* <img src="../assets/lvc_landing.png" /> */}
             <div style={styles.caption} className="carousel-caption-style">
               <h1>Software Solutions.</h1>
               <hr />
@@ -85,17 +81,20 @@ function UncontrolledExample() {
           <div style={styles.videoWrapper}>
             <video
               style={styles.video}
-              src="https://videos.pexels.com/video-files/17428642/17428642-hd_1920_1080_25fps.mp4"
+              // src="https://www.pexels.com/download/video/3129671/"
+              src="https://www.pexels.com/download/video/6963744/"
               autoPlay
               loop
               muted
               playsInline
             />
+
             <div style={styles.caption} className="carousel-caption-style">
               <h1>Applications of Tommorow, Today</h1>
               <hr />
               <p className="carousel-description">
-                Leverage our expertise in cloud transformation and engineering excellence
+                Leverage our expertise in cloud transformation and engineering
+                excellence
               </p>
               <button className="read-more-btn">Read More</button>
             </div>
